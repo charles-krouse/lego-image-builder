@@ -17,16 +17,16 @@ def main():
 
     # input desired background colors
     # yellow, green, red, blue
-    # color_list = ['e1fb00', '26d400', 'ff0019', '0071ff']
-    color_list = ['0071ff']
+    color_list = ['e1fb00', '26d400', 'ff0019', '0071ff']
+    # color_list = ['0071ff']
     # gray scale: black -> white
     # color_list = ['000000', '242424', '717171', 'bdbdbd', 'ffffff']
 
     # input desired text colors
-    color_text = ['717171']
+    color_text = ['ffffff']
 
     # input desired text
-    text = 'aaaa'
+    text = 'cac'
 
     # rectangle and document properties
     rect_std_size = 50
@@ -174,6 +174,10 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page):
             letter_length = 6
         if letter_upper == 'B':
             letter_length = 5
+        if letter_upper == 'C':
+            letter_length = 5
+        if letter_upper == 'D':
+            letter_length = 5
         total_length+=letter_length
 
     # calculate total length by adding space between each letter
@@ -202,7 +206,18 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page):
             text_svg += text_tmp
 
         if letter_upper == 'B':
-            pass
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_B(rect_std_size, rect_id, circle_id,
+                                                                                   color_rand, page, x_current,
+                                                                                   y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'C':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_C(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'D':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_D(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
 
     # TODO: add a check to ensure that text is shorter than the page
     # TODO: add ability for multiple lines of text
