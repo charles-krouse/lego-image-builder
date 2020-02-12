@@ -26,7 +26,7 @@ def main():
     color_text = ['ffffff']
 
     # input desired text
-    text = 'cac'
+    text = 'zzxy'
 
     # rectangle and document properties
     rect_std_size = 50
@@ -165,6 +165,7 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page):
     # create a counter for the length of the text
     total_length = 0
 
+    # TODO: update this loop
     # loop through each letter in the text to get total unit length
     for letter in text:
         letter_length = 0
@@ -173,11 +174,55 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page):
         if letter_upper == 'A':
             letter_length = 6
         if letter_upper == 'B':
-            letter_length = 5
+            letter_length = 6
         if letter_upper == 'C':
-            letter_length = 5
+            letter_length = 6
         if letter_upper == 'D':
+            letter_length = 6
+        if letter_upper == 'E':
             letter_length = 5
+        if letter_upper == 'F':
+            letter_length = 5
+        if letter_upper == 'G':
+            letter_length = 7
+        if letter_upper == 'H':
+            letter_length = 6
+        if letter_upper == 'I':
+            letter_length = 6
+        if letter_upper == 'J':
+            letter_length = 6
+        if letter_upper == 'K':
+            letter_length = 6
+        if letter_upper == 'L':
+            letter_length = 5
+        if letter_upper == 'M':
+            letter_length = 9
+        if letter_upper == 'N':
+            letter_length = 8
+        if letter_upper == 'O':
+            letter_length = 7
+        if letter_upper == 'P':
+            letter_length = 6
+        if letter_upper == 'Q':
+            letter_length = 7
+        if letter_upper == 'R':
+            letter_length = 7
+        if letter_upper == 'S':
+            letter_length = 6
+        if letter_upper == 'T':
+            letter_length = 6
+        if letter_upper == 'U':
+            letter_length = 6
+        if letter_upper == 'V':
+            letter_length = 9
+        if letter_upper == 'W':
+            letter_length = 13
+        if letter_upper == 'X':
+            letter_length = 7
+        if letter_upper == 'Y':
+            letter_length = 8
+        if letter_upper == 'Z':
+            letter_length = 6
         total_length+=letter_length
 
     # calculate total length by adding space between each letter
@@ -217,6 +262,94 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page):
 
         if letter_upper == 'D':
             text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_D(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'E':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_E(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'F':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_F(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'G':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_G(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'H':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_H(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'I':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_I(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'J':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_J(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'K':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_K(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'L':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_L(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'M':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_M(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'N':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_N(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'O':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_O(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'P':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_P(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'Q':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_Q(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'R':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_R(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'S':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_S(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'T':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_T(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'U':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_U(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'V':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_V(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'W':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_W(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'X':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_X(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'Y':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_Y(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == 'Z':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_Z(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
             text_svg += text_tmp
 
     # TODO: add a check to ensure that text is shorter than the page
