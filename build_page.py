@@ -8,36 +8,52 @@ def main():
     filename = 'view_legos.svg'
 
     debug = False
-
-    # create a 2D array which will form the page
-    alphabet_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
-                     'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    automatic_sizing = True
+    # input page dimensions if automatic_sizing is turned off
     x_page, y_page = 40, 20
-    page = [[0 for _ in range(x_page)] for _ in range(y_page)]
 
     # input desired background colors
     # yellow, green, red, blue
-    color_list = ['e1fb00', '26d400', 'ff0019', '0071ff']
-    # color_list = ['0071ff']
+    # color_list = ['e1fb00', '26d400', 'ff0019', '0071ff']
+    color_list = ['717171']
     # gray scale: black -> white
     # color_list = ['000000', '242424', '717171', 'bdbdbd', 'ffffff']
 
     # input desired text colors
     color_text = ['ffffff']
 
-    # input desired text
-    text = 'zzxy'
-
     # rectangle and document properties
     rect_std_size = 50
     rect_id = 1010
     circle_id = 0
     document_units = 'mm'
+
+    # input desired text
+    text = 'i am new'
+
+    # for i in text:
+    #     print(i)
+    #     if i == '\n':
+    #         print('********')
+    # quit()
+
+    # create a 2D array which will form the page
+    alphabet_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
+                     'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+
+    # determine page dimensions
+    if automatic_sizing:
+        x_buffer = 4
+        y_buffer = 4
+        x_page, y_page, x_start, y_start = calculate_page_size(text, x_buffer, y_buffer)
+    page = [[0 for _ in range(x_page)] for _ in range(y_page)]
+
     document_x = x_page*rect_std_size
     document_y = y_page*rect_std_size
 
     # insert text before filling matrix with blocks
-    page, text_svg, rect_id, circle_id = populate_text(debug, rect_std_size, rect_id, circle_id, text, color_text, page)
+    page, text_svg, rect_id, circle_id = populate_text(debug, rect_std_size, rect_id, circle_id, text, color_text, page, x_start, y_start)
+
     if debug:
         print(text_svg)
         print_matrix(page)
@@ -155,19 +171,15 @@ def main():
     print('Done! File created: {}'.format(filename))
 
 
-def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page):
+def calculate_page_size(text, x_buffer, y_buffer):
 
-    # each letter is 7 units high
-    y_letter = 7
-    y_page = len(page)
-    x_page = len(page[0])
-
-    # create a counter for the length of the text
+    # create a counter for the length and height of the text
     total_length = 0
+    total_height = 0
 
-    # TODO: update this loop
     # loop through each letter in the text to get total unit length
     for letter in text:
+
         letter_length = 0
         letter_upper = letter.upper()
 
@@ -223,14 +235,31 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page):
             letter_length = 8
         if letter_upper == 'Z':
             letter_length = 6
-        total_length+=letter_length
+        if letter_upper == ' ':
+            letter_length = 6
+        total_length += letter_length
+        # add a single space after each letter
+        total_length += 1
 
-    # calculate total length by adding space between each letter
-    total_length = total_length+len(text)-1
+    # remove the last single space
+    text_length = total_length - 1
+    x_page = text_length + x_buffer*2
 
-    # determine upper-left starting position
-    x_start = int((x_page - total_length) / 2)
-    y_start = int((y_page - y_letter) / 2)
+    # each letter is 7 units high
+    # TODO: add ability for multiple lines of text
+    text_height = 7
+    num_lines = 1
+    total_height = text_height * num_lines
+    y_page = text_height + y_buffer*2
+
+    # determine upper-left starting position to begin writing the text
+    x_start = int((x_page - total_length) / 2)+1
+    y_start = int((y_page - total_height) / 2)
+
+    return x_page, y_page, x_start, y_start
+
+
+def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page, x_start, y_start):
 
     # initialize the starting location
     x_current = x_start
@@ -239,7 +268,7 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page):
     # create a string of text
     text_svg = ''
 
-    # after getting length, populate the page array
+    # populate the page array
     for letter in text:
         letter_upper = letter.upper()
 
@@ -352,12 +381,9 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page):
             text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_Z(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
             text_svg += text_tmp
 
-    # TODO: add a check to ensure that text is shorter than the page
-    # TODO: add ability for multiple lines of text
-    if debug:
-        print('text length = {}'.format(total_length))
-        print('page x = {}'.format(x_page))
-        print('page y = {}'.format(y_page))
+        if letter_upper == ' ':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_space(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
 
     return page, text_svg, rect_id, circle_id
 

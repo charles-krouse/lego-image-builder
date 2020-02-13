@@ -434,6 +434,18 @@ def return_Z(rect_std_size, rect_id, circle_id, color, page, x_current, y_curren
     return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
 
 
+def return_space(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[0, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0, 0],
+                     [0, 0, 0, 0, 0, 0]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
 
 def return_square_text(id_rect, id_circle, color, rect_std_size, x_size, y_size, x_loc, y_loc, dx, dy):
 
