@@ -29,11 +29,11 @@ def main():
     document_units = 'mm'
 
     # input desired text
-    text = 'i am new'
+    text = 'charlie\ndanny\nben'
 
     # for i in text:
     #     print(i)
-    #     if i == '\n':
+    #     if i.upper() == '\n':
     #         print('********')
     # quit()
 
@@ -175,7 +175,12 @@ def calculate_page_size(text, x_buffer, y_buffer):
 
     # create a counter for the length and height of the text
     total_length = 0
-    total_height = 0
+    line_length_list = []
+    num_lines = 1
+
+    # create lists for the starting locations. need a new starting location for each line
+    x_start = []
+    y_start = []
 
     # loop through each letter in the text to get total unit length
     for letter in text:
@@ -235,26 +240,47 @@ def calculate_page_size(text, x_buffer, y_buffer):
             letter_length = 8
         if letter_upper == 'Z':
             letter_length = 6
+
+        # special characters
         if letter_upper == ' ':
             letter_length = 6
+        if letter_upper == '\n':
+
+            # calculate the starting location for the line
+            text_length = total_length - 1
+            x_page = text_length + x_buffer*2
+            x_start.append(int((x_page - total_length) / 2) + 1)
+
+            # reset the length counter
+            line_length_list.append(total_length)
+            letter_length = 0
+            total_length = -1
+            num_lines += 1
+
         total_length += letter_length
         # add a single space after each letter
         total_length += 1
 
+    # get the longest line
+    line_length_list.append(total_length)
+    text_length = max(line_length_list)
+
     # remove the last single space
-    text_length = total_length - 1
+    text_length -= 1
     x_page = text_length + x_buffer*2
 
     # each letter is 7 units high
     # TODO: add ability for multiple lines of text
     text_height = 7
-    num_lines = 1
-    total_height = text_height * num_lines
-    y_page = text_height + y_buffer*2
+    # add a space between lines
+    text_height += 1
+    total_height = text_height * num_lines - 1
+    y_page = total_height + y_buffer*2
 
     # determine upper-left starting position to begin writing the text
-    x_start = int((x_page - total_length) / 2)+1
-    y_start = int((y_page - total_height) / 2)
+    x_start.append(int((x_page - total_length) / 2)+1)
+    # y_start = int((y_page - total_height) / 2)
+    y_start = y_buffer
 
     return x_page, y_page, x_start, y_start
 
@@ -262,7 +288,8 @@ def calculate_page_size(text, x_buffer, y_buffer):
 def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page, x_start, y_start):
 
     # initialize the starting location
-    x_current = x_start
+    current_line = 0
+    x_current = x_start[current_line]
     y_current = y_start
 
     # create a string of text
@@ -384,6 +411,13 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page, x
         if letter_upper == ' ':
             text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_space(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
             text_svg += text_tmp
+
+        if letter_upper == '\n':
+            current_line += 1
+            # move down one letter plus one space
+            y_current += 8
+            # get the next x_start location
+            x_current = x_start[current_line]
 
     return page, text_svg, rect_id, circle_id
 
