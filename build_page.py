@@ -9,8 +9,8 @@ def main():
 
     debug = False
     automatic_sizing = True
-    # input page dimensions if automatic_sizing is turned off
-    x_page, y_page = 40, 20
+    x_buffer = 10
+    y_buffer = 10
 
     # input desired background colors
     # yellow, green, red, blue
@@ -29,13 +29,7 @@ def main():
     document_units = 'mm'
 
     # input desired text
-    text = 'charlie\ndanny\nben'
-
-    # for i in text:
-    #     print(i)
-    #     if i.upper() == '\n':
-    #         print('********')
-    # quit()
+    text = '2020\ngoal'
 
     # create a 2D array which will form the page
     alphabet_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
@@ -43,9 +37,10 @@ def main():
 
     # determine page dimensions
     if automatic_sizing:
-        x_buffer = 4
-        y_buffer = 4
         x_page, y_page, x_start, y_start = calculate_page_size(text, x_buffer, y_buffer)
+    else:
+        x_page = 50
+        y_page = 50
     page = [[0 for _ in range(x_page)] for _ in range(y_page)]
 
     document_x = x_page*rect_std_size
@@ -180,7 +175,6 @@ def calculate_page_size(text, x_buffer, y_buffer):
 
     # create lists for the starting locations. need a new starting location for each line
     x_start = []
-    y_start = []
 
     # loop through each letter in the text to get total unit length
     for letter in text:
@@ -241,9 +235,19 @@ def calculate_page_size(text, x_buffer, y_buffer):
         if letter_upper == 'Z':
             letter_length = 6
 
+        # numbers
+        if letter_upper == '0':
+            letter_length = 7
+        if letter_upper == '1':
+            letter_length = 4
+        if letter_upper == '2':
+            letter_length = 5
+
         # special characters
         if letter_upper == ' ':
             letter_length = 6
+        if letter_upper == ':':
+            letter_length = 4
         if letter_upper == '\n':
 
             # calculate the starting location for the line
@@ -267,19 +271,24 @@ def calculate_page_size(text, x_buffer, y_buffer):
 
     # remove the last single space
     text_length -= 1
+    # calculate total length of the page
     x_page = text_length + x_buffer*2
 
+    # calculate length of last line
+    x_start.append(int((x_page - total_length) / 2) + 1)
+
+    # adjust the x-start location of shorter lines so that they are centered
+    for iii, x in enumerate(line_length_list):
+        if (x < text_length):
+            x_start[iii] = int((x_page - x) / 2) + 1
+
     # each letter is 7 units high
-    # TODO: add ability for multiple lines of text
     text_height = 7
     # add a space between lines
     text_height += 1
     total_height = text_height * num_lines - 1
     y_page = total_height + y_buffer*2
 
-    # determine upper-left starting position to begin writing the text
-    x_start.append(int((x_page - total_length) / 2)+1)
-    # y_start = int((y_page - total_height) / 2)
     y_start = y_buffer
 
     return x_page, y_page, x_start, y_start
@@ -290,6 +299,9 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page, x
     # initialize the starting location
     current_line = 0
     x_current = x_start[current_line]
+    if debug:
+        print('x_start = {}'.format(x_start))
+        print('x_current = {}'.format(x_current))
     y_current = y_start
 
     # create a string of text
@@ -408,16 +420,34 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page, x
             text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_Z(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
             text_svg += text_tmp
 
+        if letter_upper == '0':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_zero(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == '1':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_one(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == '2':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_two(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
         if letter_upper == ' ':
             text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_space(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
             text_svg += text_tmp
 
+        if letter_upper == ':':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_colon(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
         if letter_upper == '\n':
             current_line += 1
-            # move down one letter plus one space
-            y_current += 8
+            # move down one letter plus two spaces
+            y_current += 9
             # get the next x_start location
             x_current = x_start[current_line]
+            if debug:
+                print('x_current = {}'.format(x_current))
 
     return page, text_svg, rect_id, circle_id
 

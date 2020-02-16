@@ -446,9 +446,52 @@ def return_space(rect_std_size, rect_id, circle_id, color, page, x_current, y_cu
     return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
 
 
-# I don't think we need this function?
-def return_newline(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
-    return text, x_current, y_current, rect_id, circle_id
+def return_colon(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[0, 0, 0, 0],
+                     [0, 6, n, 0],
+                     [0, n, n, 0],
+                     [0, 0, 0, 0],
+                     [0, 6, n, 0],
+                     [0, n, n, 0],
+                     [0, 0, 0, 0]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
+def return_zero(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[0, 11, n, n, n, 0],
+                     [8, n, 11, n, n, n],
+                     [n, n, 0, 0, 8, n],
+                     [n, n, 0, 0, n, n],
+                     [n, n, 0, 0, n, n],
+                     [11, n, n, n, n, n],
+                     [0, 11, n, n, n, 0]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
+def return_one(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[10, n, n, 0],
+                     [n, n, n, 0],
+                     [0, 7, n, 0],
+                     [0, n, n, 0],
+                     [0, n, n, 0],
+                     [12, n, n, n],
+                     [n, n, n, n]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
+def return_two(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[11, n, n, n, 0],
+                     [9, n, n, 5, n],
+                     [0, 0, 9, n, n],
+                     [0, 9, n, n, 0],
+                     [9, n, n, 0, 0],
+                     [6, n, 10, n, n],
+                     [n, n, n, n, n]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
 
 
 def return_square_text(id_rect, id_circle, color, rect_std_size, x_size, y_size, x_loc, y_loc, dx, dy):
