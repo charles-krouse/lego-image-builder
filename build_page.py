@@ -1,26 +1,58 @@
-import random
+from functions import *
 import html_text
 import alphabet
 
 def main():
 
     # input name of output file
-    filename = 'view_legos.svg'
+    filename = 'run.svg'
 
     debug = False
+    debug2 = False
     automatic_sizing = True
-    x_buffer = 10
-    y_buffer = 10
+    x_buffer = 3
+    y_buffer = 0
+    # set y_buffer = 0 to acheive desired aspect ratio
+    # golden ratio = 1.618
+    # TODO: will throw error if the x-buffer is not long enough
+    # widescreen ratio = 16:9
+    x_to_y_aspect_ratio = 16.0/9.0
 
-    # input desired background colors
     # yellow, green, red, blue
     # color_list = ['e1fb00', '26d400', 'ff0019', '0071ff']
-    color_list = ['717171']
+
+    # black and teal
+    # color_list = ['262626', '006666']
+
+    # white and gray
+    # color_list = ['ffffff', 'd9d9d9']
+
+    # black and gray
+    # color_list = ['0d0d0d', '404040']
+
+    # shades of white
+    # color_list = ['ffffff', 'd9d9d9', 'cccccc']
+
+    # valentines colors
+    # color_list = ['ffffff', 'ffccff', 'ff66ff', 'ff0066', 'cc0000']
+
+    # shades of red
+    # color_list = ['4d0000', '800000', 'ff0000']
+
+    # shades of green
+    # color_list = ['003300', '333300', '262626', '1f7a1f']
+
+    # shades of blue
+    color_list = ['0000cc', '000066', '0066ff', '001433']
+
     # gray scale: black -> white
     # color_list = ['000000', '242424', '717171', 'bdbdbd', 'ffffff']
 
     # input desired text colors
-    color_text = ['ffffff']
+    color_text = ['ffffff'] # white
+    # color_text = ['ffad33'] # gold
+    # color_text = ['ffff00'] # yellow
+    # color_text = ['ff0000', 'b30000'] # red
 
     # rectangle and document properties
     rect_std_size = 50
@@ -29,7 +61,8 @@ def main():
     document_units = 'mm'
 
     # input desired text
-    text = '2020\ngoal'
+    # enter an asterisk for a custom image
+    text = 'the last\nenchantment'
 
     # create a 2D array which will form the page
     alphabet_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
@@ -37,17 +70,21 @@ def main():
 
     # determine page dimensions
     if automatic_sizing:
-        x_page, y_page, x_start, y_start = calculate_page_size(text, x_buffer, y_buffer)
+        x_page, y_page, x_start, y_start = calculate_page_size(text, x_buffer, y_buffer, x_to_y_aspect_ratio)
     else:
+        # 1920x1080
+        # golden ratio = 1.618
         x_page = 50
         y_page = 50
+        x_start = [1]
+        y_start = 1
     page = [[0 for _ in range(x_page)] for _ in range(y_page)]
 
     document_x = x_page*rect_std_size
     document_y = y_page*rect_std_size
 
     # insert text before filling matrix with blocks
-    page, text_svg, rect_id, circle_id = populate_text(debug, rect_std_size, rect_id, circle_id, text, color_text, page, x_start, y_start)
+    page, text_svg, rect_id, circle_id = populate_text(debug2, rect_std_size, rect_id, circle_id, text, color_text, page, x_start, y_start)
 
     if debug:
         print(text_svg)
@@ -166,7 +203,7 @@ def main():
     print('Done! File created: {}'.format(filename))
 
 
-def calculate_page_size(text, x_buffer, y_buffer):
+def calculate_page_size(text, x_buffer, y_buffer, x_to_y_aspect_ratio):
 
     # create a counter for the length and height of the text
     total_length = 0
@@ -237,7 +274,7 @@ def calculate_page_size(text, x_buffer, y_buffer):
 
         # numbers
         if letter_upper == '0':
-            letter_length = 7
+            letter_length = 6
         if letter_upper == '1':
             letter_length = 4
         if letter_upper == '2':
@@ -248,6 +285,12 @@ def calculate_page_size(text, x_buffer, y_buffer):
             letter_length = 6
         if letter_upper == ':':
             letter_length = 4
+        if letter_upper == '\'':
+            letter_length = 3
+        if letter_upper == '-':
+            letter_length = 4
+        if letter_upper == '*':
+            letter_length = 34
         if letter_upper == '\n':
 
             # calculate the starting location for the line
@@ -282,14 +325,25 @@ def calculate_page_size(text, x_buffer, y_buffer):
         if (x < text_length):
             x_start[iii] = int((x_page - x) / 2) + 1
 
-    # each letter is 7 units high
-    text_height = 7
-    # add a space between lines
-    text_height += 1
-    total_height = text_height * num_lines - 1
-    y_page = total_height + y_buffer*2
+    if '*' in text:
+        # using a custom image
+        # TODO: add function to automatically calculate height of custom image
+        total_height = 32
+        total_height = 34 # actual height plus 2
+    else:
+        # each letter is 7 units high
+        text_height = 7
+        # add 2 spaces between lines
+        text_height += 2
+        total_height = text_height * num_lines - 1
 
+    y_page = total_height + y_buffer*2
     y_start = y_buffer
+
+    # calculate y-size if maintaining an aspect ratio
+    if y_buffer == 0:
+        y_page = int(x_page / x_to_y_aspect_ratio)
+        y_start = int((y_page-total_height)/2+1)
 
     return x_page, y_page, x_start, y_start
 
@@ -312,7 +366,8 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page, x
         letter_upper = letter.upper()
 
         # get a random color from the list
-        color_rand = get_random_color(color)
+        # color_rand = get_random_color(color)
+        color_rand = color
 
         if letter_upper == 'A':
             text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_A(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
@@ -440,6 +495,18 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page, x
             text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_colon(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
             text_svg += text_tmp
 
+        if letter_upper == '-':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_hyphen(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == '*':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_smile(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == '\'':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_apostrophe(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
         if letter_upper == '\n':
             current_line += 1
             # move down one letter plus two spaces
@@ -451,27 +518,6 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page, x
 
     return page, text_svg, rect_id, circle_id
 
-
-def get_random_color(color_list):
-    # get a random color from the list
-    color_id = random.randint(0, len(color_list) - 1)
-    color_rand = color_list[color_id]
-    return color_rand
-
-
-def get_random_size():
-    # only allow lego blocks as big as 4x4
-    x = 4
-    y = 4
-    while (x>=3 and y>=3):
-        x = random.randint(1, 4)
-        y = random.randint(1, 4)
-    return x, y
-
-
-def print_matrix(m):
-    for item in m:
-        print(item)
 
 
 if __name__ == '__main__':

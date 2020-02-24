@@ -1,50 +1,8 @@
 from html_text import return_square, return_circle
-
-'''
-key : dimension
-n : filler
-1 : 1x1
-2 : 1x2
-3 : 1x3
-4 : 1x4
-5 : 2x1
-6 : 2x2
-7 : 2x3
-8 : 2x4
-9 : 3x1
-10 : 3x2
-11 : 4x1
-12 : 4x2
+from functions import get_random_color
 
 
-letter_matrix =     [[0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0]]
-                     
-                     
-letter_matrix =     [[0, 0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0, 0]]
-                     
-letter_matrix =     [[0, 0, 0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0, 0, 0],
-                     [0, 0, 0, 0, 0, 0, 0]]
-                     
-'''
-
-def fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, x_add, y_current):
+def fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color_list, x_current, x_add, y_current):
 
     text = ''
 
@@ -53,6 +11,9 @@ def fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, 
 
         # iterate through each column
         for yyy, y_val in enumerate(letter_matrix):
+
+            # get a random color
+            color = get_random_color(color_list)
 
             if letter_matrix[yyy][xxx] == 0:
                 page[y_current+yyy][x_current+xxx] = 0
@@ -458,6 +419,30 @@ def return_colon(rect_std_size, rect_id, circle_id, color, page, x_current, y_cu
     return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
 
 
+def return_apostrophe(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[9, n, n],
+                     [0, 6, n],
+                     [0, n, n],
+                     [0, 0, 0],
+                     [0, 0, 0],
+                     [0, 0, 0],
+                     [0, 0, 0]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
+def return_hyphen(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[0, 0, 0, 0],
+                     [0, 0, 0, 0],
+                     [0, 0, 0, 0],
+                     [11, n, n, n],
+                     [0, 0, 0, 0],
+                     [0, 0, 0, 0],
+                     [0, 0, 0, 0]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
 def return_zero(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
     n = 'n'
     letter_matrix = [[0, 11, n, n, n, 0],
@@ -492,6 +477,47 @@ def return_two(rect_std_size, rect_id, circle_id, color, page, x_current, y_curr
                      [6, n, 10, n, n],
                      [n, n, n, n, n]]
     return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
+def return_smile(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [
+        [0, 0, 0, 0, 12, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, n, n, n, 0, 0, 0, 0],
+        [0, 0, 0, 1, n, n, n, n, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, n, n, n, n, 1, 0, 0, 0],
+        [0, 0, 6, n, 12, n, n, n, 6, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, n, 12, n, n, n, 6, n, 0, 0],
+        [0, 1, n, n, n, n, n, n, n, n, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, n, n, n, n, n, n, n, n, 1, 0],
+        [8, n, 8, n, 6, n, 6, n, 8, n, 8, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, n, 8, n, 6, n, 6, n, 8, n, 8, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, n, n, n, n, n, n, n, n],
+        [n, n, n, n, 6, n, 6, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, 6, n, 6, n, n, n, n, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, n, n, n, n, n, n, n, n],
+        [0, 1, 6, n, 12, n, n, n, 6, n, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, n, 12, n, n, n, 6, n, 1, 0],
+        [0, 0, n, n, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, n, n, n, n, 0, 0],
+        [0, 0, 0, 1, 12, n, n, n, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 12, n, n, n, 1, 0, 0, 0],
+        [0, 0, 0, 0, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [12, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, n, n, n],
+        [n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n],
+        [0, 12, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, n, n, n, 0],
+        [0, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, 0],
+        [0, 0, 12, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, n, n, n, 0, 0],
+        [0, 0, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, 0, 0],
+        [0, 0, 0, 12, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, n, n, n, 0, 0, 0],
+        [0, 0, 0, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, 0, 0, 0],
+        [0, 0, 0, 0, 6, n, 10, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, n, n, 6, n, 0, 0, 0, 0],
+        [0, 0, 0, 0, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, n, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 10, n, n, 6, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, n, 10, n, n, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, n, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 6, n, 10, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 10, n, n, 6, n, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, n, 8, n, 8, n, 8, n, 8, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, n, n, n, n, n, n, n, n, n, n, 10, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, n, n, n, n, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    ]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
 
 
 def return_square_text(id_rect, id_circle, color, rect_std_size, x_size, y_size, x_loc, y_loc, dx, dy):
