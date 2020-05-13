@@ -349,8 +349,8 @@ def return_V(rect_std_size, rect_id, circle_id, color, page, x_current, y_curren
 
 def return_W(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
     n = 'n'
-    letter_matrix = [[3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3],
-                     [n, 2, 0, 0, 0, 10, n, n, 0, 0, 0, 2, n],
+    letter_matrix = [[3, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 3],
+                     [n, n, 0, 0, 0, 10, n, n, 0, 0, 0, n, n],
                      [n, n, 0, 0, 0, n, n, n, 0, 0, 0, n, n],
                      [0, 6, n, 0, 6, n, 0, 6, n, 0, 6, n, 0],
                      [0, n, n, 0, n, n, 0, n, n, 0, n, n, 0],
@@ -443,6 +443,18 @@ def return_hyphen(rect_std_size, rect_id, circle_id, color, page, x_current, y_c
     return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
 
 
+def return_pound(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[0, 0, 4, 0, 2, 0, 0],
+                     [0, 0, n, 0, n, 0, 0],
+                     [5, n, n, 11, n, n, n],
+                     [0, 0, n, 0, 4, 0, 0],
+                     [11, n, n, n, n, 5, n],
+                     [0, 0, 4, 0, n, 0, 0],
+                     [0, 0, n, 0, n, 0, 0]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
 def return_zero(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
     n = 'n'
     letter_matrix = [[0, 11, n, n, n, 0],
@@ -477,6 +489,67 @@ def return_two(rect_std_size, rect_id, circle_id, color, page, x_current, y_curr
                      [6, n, 10, n, n],
                      [n, n, n, n, n]]
     return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
+def return_three(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[6, n, 10, n, n],
+                     [n, n, n, n, n],
+                     [0, 0, 0, 7, n],
+                     [0, 5, n, n, n],
+                     [0, 0, 0, n, n],
+                     [10, n, n, 6, n],
+                     [n, n, n, n, n]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
+def return_four(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[8, n, 0, 7, n],
+                     [n, n, 0, n, n],
+                     [n, n, 0, n, n],
+                     [n, n, 9, n, n],
+                     [0, 0, 0, 7, n],
+                     [0, 0, 0, n, n],
+                     [0, 0, 0, n, n]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
+def return_five(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[10, n, n, 6, n,0 ],
+                     [n, n, n, n, n,0 ],
+                     [5, n, 0, 0, 0, 0],
+                     [11, n, n, n, 4, 0],
+                     [0, 0, 0, 0, n, 2],
+                     [12, n, n, n, n, n],
+                     [n, n, n, n, n, 0]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
+def return_six(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[11, n, n, n, 0],
+                     [6, n, 0, 0, 0],
+                     [n, n, 0, 0, 0],
+                     [7, n, 9, n, n],
+                     [n, n, 0, 7, n],
+                     [n, n, 0, n, n],
+                     [9, n, n, n, n]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
+
+def return_seven(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):
+    n = 'n'
+    letter_matrix = [[3, 12, n, n, n],
+                     [n, n, n, n, n],
+                     [n, 0, 0, 7, n],
+                     [0, 0, 0, n, n],
+                     [0, 0, 0, n, n],
+                     [0, 0, 0, 6, n],
+                     [0, 0, 0, n, n]]
+    return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, x_current, len(letter_matrix[0])+1, y_current)
+
 
 
 def return_smile(rect_std_size, rect_id, circle_id, color, page, x_current, y_current):

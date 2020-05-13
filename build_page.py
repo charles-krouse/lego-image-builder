@@ -7,10 +7,14 @@ def main():
     # input name of output file
     filename = 'run.svg'
 
+    # input desired text
+    # enter an asterisk for a custom image
+    text = 'the chronicles\nof narnia #7'
+
     debug = False
     debug2 = False
     automatic_sizing = True
-    x_buffer = 3
+    x_buffer = 5
     y_buffer = 0
     # set y_buffer = 0 to acheive desired aspect ratio
     # golden ratio = 1.618
@@ -21,14 +25,37 @@ def main():
     # yellow, green, red, blue
     # color_list = ['e1fb00', '26d400', 'ff0019', '0071ff']
 
+    # everybody always colors
+    # color_list = ['ff0000', 'ff00bf', '6600cc', '009900', '0033cc', '009999']
+
     # black and teal
     # color_list = ['262626', '006666']
 
     # white and gray
     # color_list = ['ffffff', 'd9d9d9']
 
+    # yellow and pink
+    # color_list = ['ff0080', 'ffff00']
+
+    # red and gold
+    # color_list = ['b30000', 'b36b00']
+
+    # purple and gold
+    # color_list = ['7300e6', 'cc6600', '9933ff', 'ffaa00']
+
+    # purple shades
+    # color_list = ['eeccff', 'cc99ff']
+
     # black and gray
-    # color_list = ['0d0d0d', '404040']
+    # color_list = ['0d0d0d', '262626', '404040', '595959']
+    # color_list = ['0d0d0d', '262626']
+
+    # black, brown, and orange
+    # color_list = ['1a1a1a', '663300', 'cc6600', 'ffa64d']
+    # color_list = ['663300', 'cc6600', 'ffa64d']
+
+    # light blue
+    # color_list = ['b3f0ff']
 
     # shades of white
     # color_list = ['ffffff', 'd9d9d9', 'cccccc']
@@ -37,22 +64,35 @@ def main():
     # color_list = ['ffffff', 'ffccff', 'ff66ff', 'ff0066', 'cc0000']
 
     # shades of red
-    # color_list = ['4d0000', '800000', 'ff0000']
+    color_list = ['4d0000', '800000', 'ff0000']
 
-    # shades of green
+    # shades of dark green
     # color_list = ['003300', '333300', '262626', '1f7a1f']
 
+    # shades of green/teal (Narnia #1)
+    # color_list = ['008055', '00ace6', '00cca3', '009999']
+
+    # shades of light blue (Narnia #2)
+    # color_list = ['009999', '00e6e6', '00cccc']
+
+    # black, purple, and green (Narnia #6)
+    # color_list = ['262626', '6600cc', '2db300']
+
     # shades of blue
-    color_list = ['0000cc', '000066', '0066ff', '001433']
+    # color_list = ['0000cc', '000066', '0066ff', '001433']
 
     # gray scale: black -> white
     # color_list = ['000000', '242424', '717171', 'bdbdbd', 'ffffff']
 
     # input desired text colors
     color_text = ['ffffff'] # white
+    # color_text = ['000099'] # blue
     # color_text = ['ffad33'] # gold
     # color_text = ['ffff00'] # yellow
     # color_text = ['ff0000', 'b30000'] # red
+    # color_text = ['00ff00'] # neon green
+    # color_text = ['0d0d0d', '262626'] # black
+    # color_text = ['262626'] # black
 
     # rectangle and document properties
     rect_std_size = 50
@@ -60,9 +100,6 @@ def main():
     circle_id = 0
     document_units = 'mm'
 
-    # input desired text
-    # enter an asterisk for a custom image
-    text = 'the last\nenchantment'
 
     # create a 2D array which will form the page
     alphabet_list = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O',
@@ -279,6 +316,16 @@ def calculate_page_size(text, x_buffer, y_buffer, x_to_y_aspect_ratio):
             letter_length = 4
         if letter_upper == '2':
             letter_length = 5
+        if letter_upper == '3':
+            letter_length = 5
+        if letter_upper == '4':
+            letter_length = 5
+        if letter_upper == '5':
+            letter_length = 6
+        if letter_upper == '6':
+            letter_length = 5
+        if letter_upper == '7':
+            letter_length = 5
 
         # special characters
         if letter_upper == ' ':
@@ -289,6 +336,8 @@ def calculate_page_size(text, x_buffer, y_buffer, x_to_y_aspect_ratio):
             letter_length = 3
         if letter_upper == '-':
             letter_length = 4
+        if letter_upper == '#':
+            letter_length = 7
         if letter_upper == '*':
             letter_length = 34
         if letter_upper == '\n':
@@ -487,6 +536,26 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page, x
             text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_two(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
             text_svg += text_tmp
 
+        if letter_upper == '3':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_three(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == '4':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_four(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == '5':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_five(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == '6':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_six(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == '7':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_seven(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
         if letter_upper == ' ':
             text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_space(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
             text_svg += text_tmp
@@ -497,6 +566,10 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page, x
 
         if letter_upper == '-':
             text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_hyphen(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_svg += text_tmp
+
+        if letter_upper == '#':
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_pound(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '*':
