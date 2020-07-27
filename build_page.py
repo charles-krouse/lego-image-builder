@@ -9,14 +9,14 @@ def main():
 
     # input desired text
     # enter an asterisk for a custom image
-    text = 'the chronicles\nof narnia #7'
+    text = ' * '
 
     debug = False
     debug2 = False
     automatic_sizing = True
-    x_buffer = 5
+    x_buffer = 10
     y_buffer = 0
-    # set y_buffer = 0 to acheive desired aspect ratio
+    # set y_buffer = 0 to achieve desired aspect ratio
     # golden ratio = 1.618
     # TODO: will throw error if the x-buffer is not long enough
     # widescreen ratio = 16:9
@@ -64,7 +64,8 @@ def main():
     # color_list = ['ffffff', 'ffccff', 'ff66ff', 'ff0066', 'cc0000']
 
     # shades of red
-    color_list = ['4d0000', '800000', 'ff0000']
+    # color_list = ['4d0000', '800000', 'ff0000']
+    color_list = ['4d0000', '800000']
 
     # shades of dark green
     # color_list = ['003300', '333300', '262626', '1f7a1f']
@@ -85,14 +86,16 @@ def main():
     # color_list = ['000000', '242424', '717171', 'bdbdbd', 'ffffff']
 
     # input desired text colors
-    color_text = ['ffffff'] # white
+    # color_text = ['ffffff'] # white
     # color_text = ['000099'] # blue
     # color_text = ['ffad33'] # gold
+    color_text = ['ffad33', 'cccccc'] # gold & silver
     # color_text = ['ffff00'] # yellow
     # color_text = ['ff0000', 'b30000'] # red
     # color_text = ['00ff00'] # neon green
     # color_text = ['0d0d0d', '262626'] # black
     # color_text = ['262626'] # black
+    # color_text = ['0099cc'] # teal
 
     # rectangle and document properties
     rect_std_size = 50
@@ -339,7 +342,9 @@ def calculate_page_size(text, x_buffer, y_buffer, x_to_y_aspect_ratio):
         if letter_upper == '#':
             letter_length = 7
         if letter_upper == '*':
-            letter_length = 34
+            letter_length = 34 # smiley face
+            letter_length = 14 # heart
+            letter_length = 30 # helmet
         if letter_upper == '\n':
 
             # calculate the starting location for the line
@@ -377,8 +382,9 @@ def calculate_page_size(text, x_buffer, y_buffer, x_to_y_aspect_ratio):
     if '*' in text:
         # using a custom image
         # TODO: add function to automatically calculate height of custom image
-        total_height = 32
-        total_height = 34 # actual height plus 2
+        # total_height = 34 # smiley face -> actual height plus 2
+        total_height = 20 # heart -> actual height plus 2 + 7
+        total_height = 32 # helmet -> actual height plus 2
     else:
         # each letter is 7 units high
         text_height = 7
@@ -417,167 +423,168 @@ def populate_text(debug, rect_std_size, rect_id, circle_id, text, color, page, x
         # get a random color from the list
         # color_rand = get_random_color(color)
         color_rand = color
+        color_rand_bool = False
 
         if letter_upper == 'A':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_A(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_A(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'B':
             text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_B(rect_std_size, rect_id, circle_id,
-                                                                                   color_rand, page, x_current,
+                                                                                   color_rand, color_rand_bool, page, x_current,
                                                                                    y_current)
             text_svg += text_tmp
 
         if letter_upper == 'C':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_C(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_C(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'D':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_D(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_D(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'E':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_E(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_E(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'F':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_F(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_F(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'G':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_G(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_G(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'H':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_H(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_H(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'I':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_I(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_I(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'J':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_J(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_J(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'K':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_K(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_K(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'L':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_L(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_L(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'M':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_M(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_M(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'N':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_N(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_N(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'O':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_O(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_O(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'P':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_P(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_P(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'Q':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_Q(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_Q(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'R':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_R(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_R(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'S':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_S(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_S(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'T':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_T(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_T(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'U':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_U(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_U(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'V':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_V(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_V(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'W':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_W(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_W(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'X':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_X(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_X(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'Y':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_Y(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_Y(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == 'Z':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_Z(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_Z(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '0':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_zero(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_zero(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '1':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_one(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_one(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '2':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_two(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_two(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '3':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_three(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_three(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '4':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_four(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_four(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '5':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_five(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_five(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '6':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_six(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_six(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '7':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_seven(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_seven(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == ' ':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_space(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_space(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == ':':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_colon(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_colon(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '-':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_hyphen(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_hyphen(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '#':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_pound(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_pound(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '*':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_smile(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_helmet(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '\'':
-            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_apostrophe(rect_std_size, rect_id, circle_id, color_rand, page, x_current, y_current)
+            text_tmp, x_current, y_current, rect_id, circle_id = alphabet.return_apostrophe(rect_std_size, rect_id, circle_id, color_rand, color_rand_bool, page, x_current, y_current)
             text_svg += text_tmp
 
         if letter_upper == '\n':
