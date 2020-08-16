@@ -2,7 +2,7 @@ Project Name: lego-image-builder
 Developer: Charles Krouse
 Description: create a vector graphic of legos that can be opened in Inkscape
 
-key : dimension
+key1 : key2 : dimension
 n : i : filler
 1 : 21 : 1x1
 2 : 22 : 1x2
@@ -156,4 +156,49 @@ letter_matrix = [
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n,   n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1,   6, n, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,   n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+]
+
+
+# 18 x 40 for milk bottle
+letter_matrix = [
+[0, 0, 0, 28, i, 28, i, 28, i, 28, i, 28, i, 28, i, 0, 0, 0],
+[0, 0, 0, i, i, i, i, i, i, i, i, i, i, i, i, 0, 0, 0],
+[0, 0, 0, i, i, i, i, i, i, i, i, i, i, i, i, 0, 0, 0],
+[0, 0, 0, i, i, i, i, i, i, i, i, i, i, i, i, 0, 0, 0],
+[0, 0, 0, 0, 8, n, 8, n, 8, n, 8, n, 8, n, 0, 0, 0, 0],
+[0, 0, 0, 0, n, n, n, n, n, n, n, n, n, n, 0, 0, 0, 0],
+[0, 0, 0, 0, n, n, n, n, n, n, n, n, n, n, 0, 0, 0, 0],
+[0, 0, 0, 0, n, n, n, n, n, n, n, n, n, n, 0, 0, 0, 0],
+[0, 0, 0, 12, n, n, n, 12, n, n, n, 12, n, n, n, 0, 0, 0],
+[0, 0, 0, n, n, n, n, n, n, n, n, n, n, n, n, 0, 0, 0],
+[0, 0, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 0, 0],
+[0, 0, n, n, n, n, n, n, n, n, n, n, n, n, n, n, 0, 0],
+[0, 10, n, n, 10, n, n, 12, n, n, n, 10, n, n, 10, n, n, 0],
+[0, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, 0],
+[6, n, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 6, n],
+[n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+[12, n, n, n, 10, n, n, 12, n, n, n, 10, n, n, 12, n, n, n],
+[n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+[6, n, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 6, n],
+[n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+[12, n, n, n, 10, n, n, 12, n, n, n, 10, n, n, 12, n, n, n],
+[n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+[6, n, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 6, n],
+[n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+[12, n, n, n, 10, n, n, 12, n, n, n, 10, n, n, 12, n, n, n],
+[n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+[6, n, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 6, n],
+[n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+[12, n, n, n, 10, n, n, 12, n, n, n, 10, n, n, 12, n, n, n],
+[n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+[6, n, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 6, n],
+[n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+[12, n, n, n, 10, n, n, 12, n, n, n, 10, n, n, 12, n, n, n],
+[n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+[6, n, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 6, n],
+[n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+[12, n, n, n, 10, n, n, 12, n, n, n, 10, n, n, 12, n, n, n],
+[n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+[1, 12, n, n, n, 12, n, n, n, 12, n, n, n, 12, n, n, n, 1],
+[0, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, 0]
 ]

@@ -630,40 +630,52 @@ def return_smile(rect_std_size, rect_id, circle_id, color, color_rand_bool, page
     return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, color_rand_bool, x_current, len(letter_matrix[0])+1, y_current)
 
 
-def return_helmet(rect_std_size, rect_id, circle_id, color, color_rand_bool, page, x_current, y_current):
+
+
+def return_milk(rect_std_size, rect_id, circle_id, color, color_rand_bool, page, x_current, y_current):
     n = 'n'
     i = 'i'
     letter_matrix = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, n, 8, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, n, n, n, n, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, n, n, n, n, n, 6, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 12, n, n, n, 12, n, n, n, 12, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, n, n, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 6, n, 0, 0, 0, 0, 7, n, 0, 0, 0, 0, 6, n, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, n, n, 11, n, n, n, n, n, 11, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 6, n, 5, n, 9, n, n, n, n, 9, n, n, 5, n, 6, n, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, n, n, 32, i, i, i, 32, i, i, i, 32, i, i, i, n, n, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 29, i, i, i, i, i, i, i, i, i, i, i, i, i, i, 29, i, i, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 26, i, 0, 26, i, 0, 22, 0, 27, i, 0, 22, 0, 26, i, 0, 26, i, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, i, i, 0, i, i, 0, i, 0, i, i, 0, i, 0, i, i, 0, i, i, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 9, n, n, 21, 30, i, i, 0, 24, 0, i, i, 0, 24, 0, 30, i, i, 21, 9, n, n, 0, 0, 0, 0],
-        [0, 0, 6, n, 11, n, n, n, i, i, i, 0, i, 0, 27, i, 0, i, 0, i, i, i, 11, n, n, n, 6, n, 0, 0],
-        [1, 2, n, n, 9, n, n, 7, n, 21, 26, i, i, 0, i, i, 0, i, 26, i, 21, 7, n, 9, n, n, n, n, 2, 1],
-        [0, n, 6, n, 0, 5, n, n, n, 1, i, i, i, 0, i, i, 0, i, i, i, 1, n, n, 5, n, 0, 6, n, n, 0],
-        [0, 0, n, n, 9, n, n, n, n, 8, n, 31, i, i, i, 31, i, i, i, 8, n, n, n, 9, n, n, n, n, 0, 0],
-        [0, 0, 0, 1, 6, n, 10, n, n, n, n, 6, n, 31, i, i, i, 6, n, n, n, 10, n, n, 6, n, 1, 0, 0, 0],
-        [0, 0, 0, 0, n, n, n, n, n, n, n, n, n, 11, n, n, n, n, n, n, n, n, n, n, n, n, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 1, 6, n, 0, n, n, 12, n, n, n, 12, n, n, n, n, n, 0, 6, n, 1, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, n, n, 9, n, n, n, n, n, n, n, n, n, n, 9, n, n, n, n, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 1, 6, n, 10, n, n, 12, n, n, n, 10, n, n, 6, n, 1, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, n, n, n, n, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, n, 0, 11, n, n, n, 0, 6, n, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, 9, n, n, 9, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, n, 6, n, 6, n, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, n, n, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 6, n, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, n, n, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        [0, 0, 0, 28, i, 28, i, 28, i, 28, i, 28, i, 28, i, 0, 0, 0],
+        [0, 0, 0, i, i, i, i, i, i, i, i, i, i, i, i, 0, 0, 0],
+        [0, 0, 0, i, i, i, i, i, i, i, i, i, i, i, i, 0, 0, 0],
+        [0, 0, 0, i, i, i, i, i, i, i, i, i, i, i, i, 0, 0, 0],
+        [0, 0, 0, 0, 8, n, 8, n, 8, n, 8, n, 8, n, 0, 0, 0, 0],
+        [0, 0, 0, 0, n, n, n, n, n, n, n, n, n, n, 0, 0, 0, 0],
+        [0, 0, 0, 0, n, n, n, n, n, n, n, n, n, n, 0, 0, 0, 0],
+        [0, 0, 0, 0, n, n, n, n, n, n, n, n, n, n, 0, 0, 0, 0],
+        [0, 0, 0, 12, n, n, n, 12, n, n, n, 12, n, n, n, 0, 0, 0],
+        [0, 0, 0, n, n, n, n, n, n, n, n, n, n, n, n, 0, 0, 0],
+        [0, 0, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 0, 0],
+        [0, 0, n, n, n, n, n, n, n, n, n, n, n, n, n, n, 0, 0],
+        [0, 10, n, n, 10, n, n, 12, n, n, n, 10, n, n, 10, n, n, 0],
+        [0, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, 0],
+        [6, n, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 6, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+        [12, n, n, n, 10, n, n, 12, n, n, n, 10, n, n, 12, n, n, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+        [6, n, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 6, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+        [12, n, n, n, 10, n, n, 12, n, n, n, 10, n, n, 12, n, n, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+        [6, n, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 6, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+        [12, n, n, n, 10, n, n, 12, n, n, n, 10, n, n, 12, n, n, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+        [6, n, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 6, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+        [12, n, n, n, 10, n, n, 12, n, n, n, 10, n, n, 12, n, n, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+        [6, n, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 6, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+        [12, n, n, n, 10, n, n, 12, n, n, n, 10, n, n, 12, n, n, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+        [6, n, 10, n, n, 12, n, n, n, 12, n, n, n, 10, n, n, 6, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+        [12, n, n, n, 10, n, n, 12, n, n, n, 10, n, n, 12, n, n, n],
+        [n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n],
+        [1, 12, n, n, n, 12, n, n, n, 12, n, n, n, 12, n, n, n, 1],
+        [0, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, n, 0]
     ]
     return fill_letter_in_page(letter_matrix, page, rect_std_size, rect_id, circle_id, color, color_rand_bool, x_current, len(letter_matrix[0])+1, y_current)
 
